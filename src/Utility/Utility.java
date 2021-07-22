@@ -3,7 +3,7 @@ package Utility;
 import java.util.Scanner;
 
 public class Utility {
-	Scanner scanner;
+	Scanner scanner=new Scanner(System.in);
 	public int getInteger() {
 		return scanner.nextInt();
 	}

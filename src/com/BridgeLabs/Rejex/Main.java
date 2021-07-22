@@ -25,7 +25,7 @@ public class Main {
 		System.out.println(Rejex.validateEmail(person.getEmail()));
 
 		System.out.println("Enter Password");
-		person.setEmail(utility.getStiring());
+		person.setPassWord(utility.getStiring());
 		System.out.println(Rejex.validatepassWord(person.getPassWord()));
 
 	}
