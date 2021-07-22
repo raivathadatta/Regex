@@ -2,29 +2,47 @@ package com.BridgeLabs.Rejex;
 
 import java.util.regex.Pattern;
 
-public class Rejex {
+public class Rejex extends Exception {
 
-	public static boolean validateName(String check) {
+	public static boolean validateName(String check) throws Exception {
 		String compiler = "^[A-Z]\\w{2,}$";
-		return Pattern.compile(compiler).matcher(check).matches();
+		
+		boolean send=Pattern.compile(compiler).matcher(check).matches();
+		if(!send) {
+			throw new Exception("invalidName");
+		}
+		return send;
 	}
 
-	public static  boolean valisdatePhoneNumber(String phoneNumer) {
+	public static  boolean valisdatePhoneNumber(String phoneNumer)throws Exception  {
 		String regex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
-		return Pattern.matches(regex, phoneNumer);
+		boolean send=Pattern.matches(regex, phoneNumer);
+		if(!send) {
+			throw new Exception("invalidName");
+		}
+		return send;
 	}
  
-	public static boolean validateEmail(String email) {
+	public static boolean validateEmail(String email) throws Exception{
 		if (email.length() == 0)
 			return false;
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";// $ represents the end of the string ^ represents the starting of a string
-		return Pattern.matches(regex, email);
+		boolean send=Pattern.matches(regex, email);
+		if(!send) {
+			throw new Exception("invalidName");
+		}
+		return send;
 	}
 
-	public static  boolean validatepassWord(String passWord) {
+	public static  boolean validatepassWord(String passWord)throws Exception {
 		System.err.println(passWord+" 2525");
 		String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{6,}$";
-		return Pattern.matches(regex, passWord);
+		
+		boolean send = Pattern.matches(regex, passWord);
+		if(!send) {
+			throw new Exception("invalidName");
+		}
+		return send;
 
 	}
 

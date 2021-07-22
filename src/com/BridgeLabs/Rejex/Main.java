@@ -3,7 +3,7 @@ package com.BridgeLabs.Rejex;
 import Utility.Utility;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Utility utility = new Utility();
 		
 		Loginpage person = new Loginpage();

@@ -38,7 +38,11 @@ public class TestingEmail {
 		});
 	}
 	@Test
-	public void testEmail() {
-		assertEquals(compare, Rejex.validateEmail(email));
+	public void testEmail() throws Exception  {
+		try {
+			assertEquals(compare, Rejex.validateEmail(email));
+		} catch (Exception e) {
+			throw new Exception("Enter wrong Email Format");
+		}
 	}
 }

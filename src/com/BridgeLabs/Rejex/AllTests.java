@@ -12,19 +12,32 @@ public class AllTests {
 	Rejex rejex = new Rejex();
 
 	@Test
-	public void testFirstname() {
-		assertEquals(false, rejex.validateName("da"));
+	public void testFirstname() throws Exception {
+		try {
+			assertEquals(false, rejex.validateName("da"));
+		} catch (Exception e) {
+			throw new Exception("Enter wrong Format");
+		}
 	}
 
 	@Test
 	public void testFirstname1() {
 
-		assertEquals(false, rejex.validateName("da"));
+		try {
+			assertEquals(false, rejex.validateName("da"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
-	public void testFirstname11() {
-		assertEquals(true, rejex.validateName("Datta"));
+	public void testFirstname11() throws Exception {
+		try {
+			assertEquals(true, rejex.validateName("Datta"));
+		} catch (Exception e) {
+			throw new Exception("Enter wrong Format");
+		}
 	}
 
 	public void trueEmails() {
@@ -42,24 +55,42 @@ public class AllTests {
 	}
 
 	@Test
-	public void testValiedEmail() {
+	public void testValiedEmail() throws Exception {
 		trueEmails();
 		for (String string : list) {
 			System.out.println(string);
-			assertEquals(true, rejex.validateEmail(string));
+			try {
+				assertEquals(true, rejex.validateEmail(string));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new Exception(" invalid email");
+			}
 		}
 
 	}
 
 	@Test
-	public void testInvaliedEmail() {
+	public void testInvaliedEmail() throws Exception {
 		invaliedEmail();
 		for (String string : invalied) {
 			System.out.println(string);
-			assertEquals(false, rejex.validateEmail(string));
+			try {
+				assertEquals(false, rejex.validateEmail(string));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new Exception("invalied Email");
+			}
 		}
 	}
-
+@Test
+public void testPhoneNumber() throws Exception {
+	String string ="+91 852147963";
+	try {
+		assertEquals(true, rejex.valisdatePhoneNumber(string));
+	} catch (Exception e) {
+		throw new Exception("Entered Phone Number ForMatis Wrong");
+	}
+}
 	private void invaliedEmail() {
 		invalied.add("abc");
 		invalied.add(".abc@.com.my");
