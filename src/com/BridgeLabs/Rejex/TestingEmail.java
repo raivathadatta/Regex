@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,12 +38,21 @@ public class TestingEmail {
 			{"abc.100@abc.com.au",true},{"abc@1.com",true},{"abc@1.com",true},{"abc@gmail.com",true},
 		});
 	}
-	@Test
-	public void testEmail() throws Exception  {
-		try {
-			assertEquals(compare, Rejex.validateEmail(email));
-		} catch (Exception e) {
-			throw new Exception("Enter wrong Email Format");
-		}
-	}
+//	@Test
+//	public void testEmail() throws Exception  {
+//		try {
+//			assertEquals(compare, Rejex.validateEmail(email));
+//		} catch (Exception e) {
+//			throw new Exception("Enter wrong Email Format");
+//		}
+//	}
+	 @Test
+	    public void givenEmail_IsValidOrInvalid() throws Exception {
+	        try {
+	           Rejex userImpl = new Rejex();
+	            userImpl.validateEmail(this.email);
+	        } catch ( UserRegistrationException e) {
+	            Assert.assertEquals(UserRegistrationException.ExceptionType.INVALID_EMAIL_ID, e.type);
+	        }
+	    }
 }

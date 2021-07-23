@@ -9,7 +9,7 @@ public class Rejex extends Exception {
 		
 		boolean send=Pattern.compile(compiler).matcher(check).matches();
 		if(!send) {
-			throw new Exception("invalidName");
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_NAME);
 		}
 		return send;
 	}
@@ -18,7 +18,8 @@ public class Rejex extends Exception {
 		String regex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
 		boolean send=Pattern.matches(regex, phoneNumer);
 		if(!send) {
-			throw new Exception("invalidName");
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_PHONRNUMBER);
+
 		}
 		return send;
 	}
@@ -29,7 +30,8 @@ public class Rejex extends Exception {
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";// $ represents the end of the string ^ represents the starting of a string
 		boolean send=Pattern.matches(regex, email);
 		if(!send) {
-			throw new Exception("invalidName");
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_EMAIL_ID);
+
 		}
 		return send;
 	}
@@ -40,7 +42,8 @@ public class Rejex extends Exception {
 		
 		boolean send = Pattern.matches(regex, passWord);
 		if(!send) {
-			throw new Exception("invalidName");
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_PASSWORD);
+
 		}
 		return send;
 
