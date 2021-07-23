@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,35 +35,24 @@ public class TestingEmail {
 			{"abc()*@gmail.com",false},{" abc()*@gmail.com",false},{" abc()*@gmail.com",false},{"abc..2002@gmail.com",false},
 			{"abc@%*.com",false},{" abc@gmail.com.aa.au",false},{"abc@gmail.com.1a",false},{"abc+%@gmail.com.1a",false},
 			{"abc@yahoo.com",true},{"abc-100@yahoo.com",true},{"abc.100@yahoo.com",true},{"abc111@abc.com",true},{"abc-100@abc.net",true},
-			{"abc.100@abc.com.au",true},{"abc@1.com",true},{"abc@1.com",true},{"abc@gmail.com",true},
+			{"abc.100@abc.com.au",true},{"abc@1.com",true},{"abc@1.com",true},{"abc@gmail.com",true}
 		});
 	}
-<<<<<<< Updated upstream
 	@Test
 	public void testEmail() throws Exception  {
 		try {
-			assertEquals(compare, Rejex.validateEmail(email));
+			assertEquals(compare,UserValidation .validateEmail(email));
 		} catch (Exception e) {
 			throw new Exception("Enter wrong Email Format");
 		}
 	}
-=======
-//	@Test
-//	public void testEmail() throws Exception  {
-//		try {
-//			assertEquals(compare, Rejex.validateEmail(email));
-//		} catch (Exception e) {
-//			throw new Exception("Enter wrong Email Format");
-//		}
-//	}
 	 @Test
 	    public void givenEmail_IsValidOrInvalid() throws Exception {
 	        try {
-	           UserValidation userImpl = new UserValidation();
+	          UserValidation userImpl = new UserValidation();
 	            userImpl.validateEmail(this.email);
 	        } catch ( UserRegistrationException e) {
-	            Assert.assertEquals(UserRegistrationException.ExceptionType.INVALID_EMAIL_ID, e.type);
+	            assertEquals(UserRegistrationException.ExceptionType.INVALID_EMAIL_ID, e.type);
 	        }
 	    }
->>>>>>> Stashed changes
 }
