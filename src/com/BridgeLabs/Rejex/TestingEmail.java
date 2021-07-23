@@ -37,6 +37,7 @@ public class TestingEmail {
 			{"abc.100@abc.com.au",true},{"abc@1.com",true},{"abc@1.com",true},{"abc@gmail.com",true},
 		});
 	}
+<<<<<<< Updated upstream
 	@Test
 	public void testEmail() throws Exception  {
 		try {
@@ -45,4 +46,23 @@ public class TestingEmail {
 			throw new Exception("Enter wrong Email Format");
 		}
 	}
+=======
+//	@Test
+//	public void testEmail() throws Exception  {
+//		try {
+//			assertEquals(compare, Rejex.validateEmail(email));
+//		} catch (Exception e) {
+//			throw new Exception("Enter wrong Email Format");
+//		}
+//	}
+	 @Test
+	    public void givenEmail_IsValidOrInvalid() throws Exception {
+	        try {
+	           UserValidation userImpl = new UserValidation();
+	            userImpl.validateEmail(this.email);
+	        } catch ( UserRegistrationException e) {
+	            Assert.assertEquals(UserRegistrationException.ExceptionType.INVALID_EMAIL_ID, e.type);
+	        }
+	    }
+>>>>>>> Stashed changes
 }

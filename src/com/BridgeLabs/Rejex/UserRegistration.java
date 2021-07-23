@@ -1,6 +1,6 @@
 package com.BridgeLabs.Rejex;
 
-public class Loginpage {
+public class UserRegistration {
 	String firstName;
 	String lastNmae;
 	String phoneNumber;

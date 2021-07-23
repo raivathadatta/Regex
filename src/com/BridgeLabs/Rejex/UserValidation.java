@@ -2,7 +2,7 @@ package com.BridgeLabs.Rejex;
 
 import java.util.regex.Pattern;
 
-public class Rejex extends Exception {
+public class UserValidation extends Exception {
 
 	public static boolean validateName(String check) throws Exception {
 		String compiler = "^[A-Z]\\w{2,}$";

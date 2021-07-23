@@ -6,17 +6,20 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class AllTests {
 	LinkedList<String> list = new LinkedList<String>();
 	LinkedList<String> invalied = new LinkedList<String>();
-	Rejex rejex = new Rejex();
+	UserValidation rejex = new UserValidation();
 
 	@Test
 	public void testFirstname() throws Exception {
 		try {
-			assertEquals(false, rejex.validateName("da"));
-		} catch (Exception e) {
-			throw new Exception("Enter wrong Format");
+			UserValidation userImpl = new UserValidation();
+			userImpl.validateName("datta");
+		} catch (UserRegistrationException e) {
+			assertEquals(UserRegistrationException.ExceptionType.INVALID_NAME, e.type);
 		}
 	}
 
@@ -40,70 +43,45 @@ public class AllTests {
 		}
 	}
 
-	public void trueEmails() {
-
-		list.add("abc@yahoo.com");
-		list.add("abc-100@yahoo.com");
-		list.add("abc.100@yahoo.com");
-		list.add("abc111@abc.com");
-		list.add("abc-100@abc.net");
-		// list.add("abc.100@abc.com.au");
-		list.add("abc@1.com");
-		list.add("abc@1.com");
-		list.add("abc@gmail.com");
-
+	@Test
+	public void testPhoneNumber() throws Exception {
+		String string = "+91 852147963";
+		try {
+			assertEquals(true, rejex.valisdatePhoneNumber(string));
+		} catch (UserRegistrationException e) {
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_PHONRNUMBER);
+		}
 	}
 
 	@Test
-	public void testValiedEmail() throws Exception {
-		trueEmails();
-		for (String string : list) {
-			System.out.println(string);
-			try {
-				assertEquals(true, rejex.validateEmail(string));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				throw new Exception(" invalid email");
-			}
+	public void testPhoneNumberWrong() throws Exception {
+		String string = "+97963";
+		try {
+			rejex.valisdatePhoneNumber(string);
+		} catch (UserRegistrationException e) {
+			assertEquals(UserRegistrationException.ExceptionType.INVALID_PHONRNUMBER, e.type);
+		}
+	}
+
+	@Test
+	public void testPassword() throws Exception {
+		String string = "acd#121A25";
+		try {
+			assertEquals(true, rejex.validatepassWord(string));
+		} catch (UserRegistrationException e) {
+			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_PASSWORD);
 		}
 
 	}
 
 	@Test
-	public void testInvaliedEmail() throws Exception {
-		invaliedEmail();
-		for (String string : invalied) {
-			System.out.println(string);
-			try {
-				assertEquals(false, rejex.validateEmail(string));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				throw new Exception("invalied Email");
-			}
+	public void testPasswordWrong() throws Exception {
+		String string = "acdA25";
+		try {
+			rejex.validatepassWord(string);
+		} catch (UserRegistrationException e) {
+			assertEquals(UserRegistrationException.ExceptionType.INVALID_PASSWORD, e.type);
 		}
-	}
-@Test
-public void testPhoneNumber() throws Exception {
-	String string ="+91 852147963";
-	try {
-		assertEquals(true, rejex.valisdatePhoneNumber(string));
-	} catch (Exception e) {
-		throw new Exception("Entered Phone Number ForMatis Wrong");
-	}
-}
-	private void invaliedEmail() {
-		invalied.add("abc");
-		invalied.add(".abc@.com.my");
-		invalied.add("abc123@gmail.a");
-		invalied.add("abc123@.com");
-		invalied.add(" .abc@abc.com");
-		invalied.add("abc()*@gmail.com");
-		invalied.add(" abc()*@gmail.com");
-		invalied.add("abc..2002@gmail.com");
-		invalied.add("abc@gmail.com.1a");
-		invalied.add("abc@gmail.com.1a");
-		invalied.add(" abc@gmail.com.aa.au");
-		invalied.add("abc@%*.com");
-	}
 
+	}
 }
