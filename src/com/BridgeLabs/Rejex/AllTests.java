@@ -6,6 +6,8 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class AllTests {
 	LinkedList<String> list = new LinkedList<String>();
 	LinkedList<String> invalied = new LinkedList<String>();
@@ -14,9 +16,10 @@ public class AllTests {
 	@Test
 	public void testFirstname() throws Exception {
 		try {
-			assertEquals(false, rejex.validateName("da"));
-		} catch (Exception e) {
-			throw new Exception("Enter wrong Format");
+			Rejex userImpl = new Rejex();
+            userImpl.validateName("datta");
+		} catch (UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.INVALID_NAME, e.type);
 		}
 	}
 
